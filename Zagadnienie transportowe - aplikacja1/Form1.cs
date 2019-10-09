@@ -38,7 +38,7 @@ namespace Zagadnienie_transportowe___aplikacja1
             jednostkowe_koszty_transportu[1, 2] = 9;
             jednostkowe_koszty_transportu[2, 0] = 13;
             jednostkowe_koszty_transportu[2, 1] = 3;
-            jednostkowe_koszty_transportu[2, 2] = 9;
+            jednostkowe_koszty_transportu[2, 2] = 9; 
 
             int[] popyt = new int[ilosc_odbiorcow]; 
             popyt[0] = 20;
