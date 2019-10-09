@@ -43,7 +43,7 @@ namespace Zagadnienie_transportowe___aplikacja1
             int[] popyt = new int[ilosc_odbiorcow]; 
             popyt[0] = 20;
             popyt[1] = 40;
-            popyt[1] = 90;
+            popyt[2] = 90;
             int[] podaz = new int[ilosc_dostawcow];
             podaz[0] = 50;
             podaz[1] = 70;
@@ -88,12 +88,7 @@ namespace Zagadnienie_transportowe___aplikacja1
                 min_j_poprzednie = min_j;
                 
             }
-                
-
-
-
-
-
+               
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
