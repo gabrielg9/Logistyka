@@ -32,7 +32,7 @@ namespace Zagadnienie_transportowe___aplikacja1
             int[,] jednostkowe_koszty_transportu = new int[ilosc_odbiorcow, ilosc_dostawcow];
             jednostkowe_koszty_transportu[0, 0] = 3;
             jednostkowe_koszty_transportu[0, 1] = 5;
-            jednostkowe_koszty_transportu[0, 2] = 7;
+            jednostkowe_koszty_transportu[0, 2] = 7; 
             jednostkowe_koszty_transportu[1, 0] = 12; 
             jednostkowe_koszty_transportu[1, 1] = 10;
             jednostkowe_koszty_transportu[1, 2] = 9;
