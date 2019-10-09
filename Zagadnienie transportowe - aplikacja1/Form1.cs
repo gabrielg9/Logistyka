@@ -36,7 +36,7 @@ namespace Zagadnienie_transportowe___aplikacja1
             jednostkowe_koszty_transportu[1, 0] = 12; 
             jednostkowe_koszty_transportu[1, 1] = 10;
             jednostkowe_koszty_transportu[1, 2] = 9;
-            jednostkowe_koszty_transportu[2, 0] = 13;
+            jednostkowe_koszty_transportu[2, 0] = 13; 
             jednostkowe_koszty_transportu[2, 1] = 3;
             jednostkowe_koszty_transportu[2, 2] = 9; 
 
