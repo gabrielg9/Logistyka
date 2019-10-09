@@ -52,34 +52,43 @@ namespace Zagadnienie_transportowe___aplikacja1
             int[,] rozwiazanie_bazowe = new int[ilosc_odbiorcow, ilosc_dostawcow];
             int min_i = 0;
             int min_j = 0;
-            int min_element = jednostkowe_koszty_transportu[0, 0] ;
+            int min_i_poprzednie = 0;
+            int min_j_poprzednie = 0;
+            int min_element = jednostkowe_koszty_transportu[0, 0];
+            
 
-
-            for (int i=0; i<ilosc_dostawcow; i++)
+            for(int k=0; ilosc_dostawcow*ilosc_odbiorcow-1; k++)
             {
-                for(int j=0; j<ilosc_odbiorcow; j++)
+                for (int i=0; i<ilosc_dostawcow; i++)
                 {
-                    if(jednostkowe_koszty_transportu[i,j] < min_element)
+                    for(int j=0; j<ilosc_odbiorcow; j++)
                     {
-                        min_element = jednostkowe_koszty_transportu[i, j];
-                        min_i = i;
-                        min_j = j; 
+                        if(jednostkowe_koszty_transportu[i,j] < min_element && (min_i_poprzednie != min_i || min_j_poprzednie != min_j))
+                        {
+                            min_element = jednostkowe_koszty_transportu[i, j];
+                            min_i = i;
+                            min_j = j; 
+                        }
                     }
                 }
-            }
 
-            if (popyt[min_j] < podaz[min_i])
-            {
-                rozwiazanie_bazowe[min_i, min_j] = popyt[min_j];
-                podaz[min_i] = podaz[min_i] - popyt[min_j];
-                popyt[min_j] = 0;
+                if (popyt[min_j] < podaz[min_i])
+                {
+                    rozwiazanie_bazowe[min_i, min_j] = popyt[min_j];
+                    podaz[min_i] = podaz[min_i] - popyt[min_j];
+                    popyt[min_j] = 0;
+                }
+                else
+                {
+                    rozwiazanie_bazowe[min_i, min_j] = podaz[min_i];
+                    popyt[min_j] = popyt[min_j] - podaz[min_i];
+                    podaz[min_i] = 0;
+                }
+                min_i_poprzednie = min_i;
+                min_j_poprzednie = min_j;
+                
             }
-            else
-            {
-                rozwiazanie_bazowe[min_i, min_j] = podaz[min_i];
-                popyt[min_j] = popyt[min_j] - podaz[min_i];
-                podaz[min_i] = 0;
-            }
+                
 
 
 
