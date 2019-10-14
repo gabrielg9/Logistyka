@@ -41,13 +41,13 @@ namespace Zagadnienie_transportowe___aplikacja1
             jednostkowe_koszty_transportu[2, 2] = 9; 
 
             int[] popyt = new int[ilosc_odbiorcow]; 
-            popyt[0] = 20;
-            popyt[1] = 40;
-            popyt[2] = 90;
+            popyt[0] = int.Parse(textBox6.Text);//20
+            popyt[1] = int.Parse(textBox7.Text);//40
+            popyt[2] = int.Parse(textBox8.Text);//90
             int[] podaz = new int[ilosc_dostawcow];
-            podaz[0] = 50;
-            podaz[1] = 70;
-            podaz[2] = 30;
+            podaz[0] = int.Parse(textBox3.Text);//50
+            podaz[1] = int.Parse(textBox4.Text);//70
+            podaz[2] = int.Parse(textBox5.Text);//30
 
             int[,] rozwiazanie_bazowe = new int[ilosc_odbiorcow, ilosc_dostawcow];
             int min_i = 0;
@@ -57,7 +57,7 @@ namespace Zagadnienie_transportowe___aplikacja1
             int min_element = jednostkowe_koszty_transportu[0, 0];
             
 
-            for(int k=0; ilosc_dostawcow*ilosc_odbiorcow-1; k++)
+            for(int k=0; k < ilosc_dostawcow*ilosc_odbiorcow-1; k++)
             {
                 for (int i=0; i<ilosc_dostawcow; i++)
                 {
