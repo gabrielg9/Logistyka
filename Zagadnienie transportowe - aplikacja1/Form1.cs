@@ -21,10 +21,10 @@ namespace Zagadnienie_transportowe___aplikacja1
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            zagadnienie_transportowe_metoda_wierzcholka_NW();
+           zagadnienie_transportowe_metoda_min_element_Macierzy();
         }
 
-        private void zagadnienie_transportowe_metoda_wierzcholka_NW()
+        private void zagadnienie_transportowe_metoda_min_element_Macierzy()
         {
             ilosc_dostawcow = int.Parse(textBox1.Text);
             ilosc_odbiorcow = int.Parse(textBox2.Text);
@@ -44,6 +44,7 @@ namespace Zagadnienie_transportowe___aplikacja1
             popyt[0] = int.Parse(textBox6.Text);//20
             popyt[1] = int.Parse(textBox7.Text);//40
             popyt[2] = int.Parse(textBox8.Text);//90
+
             int[] podaz = new int[ilosc_dostawcow];
             podaz[0] = int.Parse(textBox3.Text);//50
             podaz[1] = int.Parse(textBox4.Text);//70
@@ -88,6 +89,11 @@ namespace Zagadnienie_transportowe___aplikacja1
                 min_j_poprzednie = min_j;
                 
             }
+
+            for (int i = 0; i < ilosc_dostawcow; i++)
+                for (int j = 0; j < ilosc_odbiorcow; j++)
+                    Console.WriteLine((rozwiazanie_bazowe[i, j]).ToString());
+            
                
         }
 
