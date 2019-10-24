@@ -163,8 +163,44 @@ namespace Zagadnienie_transportowe___aplikacja1
             for (int i = 0; i < ilosc_dostawcow; i++)
                 for (int j = 0; j < ilosc_odbiorcow; j++)
                     Console.WriteLine(delta[i, j].ToString());
-            
-               
+
+            int min_i_delta = 0;
+            int min_j_delta = 0;
+            int min_delta = delta[0,0];
+            for(int i=0; i<ilosc_dostawcow; i++)
+                for(int j=0; j<ilosc_odbiorcow; j++)
+                    if(delta[i,j] < min_delta)
+                    {
+                        min_delta = delta[i, j];
+                        min_i_delta = i;
+                        min_j_delta = j;
+                    }
+
+            Console.WriteLine("Minimum z delty");
+            Console.WriteLine(min_delta.ToString());
+            if(min_delta < 0)
+            {
+                
+            }
+            else
+            {
+                wyswietl_wszystko(jednostkowe_koszty_transportu, rozwiazanie_bazowe, delta, ilosc_odbiorcow, ilosc_dostawcow);
+            }
+        }
+
+        private void wyswietl_wszystko(int[,] jednostkowe_koszty_transportu, int[,] rozwiazanie_bazowe, int[,] delta, int iloscOdbiorcow, int iloscDostawcow)
+        {
+            //wyswietlenie wszystkiego i policzenie kosztu calkowitego
+            for (int i = 0; i < iloscDostawcow; i++)
+                for (int j = 0; j < iloscOdbiorcow; j++)
+                    jednostkowe_koszty_transportu[i, j] /= 100;
+            int koszt_calkowity = 0;
+            for (int i = 0; i < iloscDostawcow; i++)
+                for (int j = 0; j < iloscOdbiorcow; j++)
+                    koszt_calkowity += jednostkowe_koszty_transportu[i, j] * rozwiazanie_bazowe[i, j];
+
+            Console.WriteLine("Koszt calkowity");
+            Console.WriteLine(koszt_calkowity.ToString());
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
