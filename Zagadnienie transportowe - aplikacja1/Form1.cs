@@ -154,10 +154,15 @@ namespace Zagadnienie_transportowe___aplikacja1
                         delta[i, j] = 0;
                     else
                     {
-                        delta[i, j] = rozwiazanie_bazowe[i, j] - alfa[i] - beta[j];
+                        delta[i, j] = jednostkowe_koszty_transportu[i, j]/100 - alfa[i] - beta[j];
                     }
                 }
             }
+
+            Console.WriteLine("+++++++++");
+            for (int i = 0; i < ilosc_dostawcow; i++)
+                for (int j = 0; j < ilosc_odbiorcow; j++)
+                    Console.WriteLine(delta[i, j].ToString());
             
                
         }
