@@ -14,54 +14,62 @@ namespace Zagadnienie_transportowe___aplikacja1
     {
         private int ilosc_dostawcow;
         private int ilosc_odbiorcow;
+        int[,] jednostkowe_koszty_transportu;
+        int[,] jednostkowe_koszty_transportu_pomocna;
+        int[] popyt;
+        int[] podaz;
+        int[,] rozwiazanie_bazowe;
+        int min_i;
+        int min_j;
+        int min_element;
+
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-           zagadnienie_transportowe_metoda_min_element_Macierzy();
-        }
-
-        private void zagadnienie_transportowe_metoda_min_element_Macierzy()
-        {
             ilosc_dostawcow = int.Parse(textBox1.Text);
             ilosc_odbiorcow = int.Parse(textBox2.Text);
 
-            int[,] jednostkowe_koszty_transportu = new int[ilosc_odbiorcow, ilosc_dostawcow];
-            int[,] jednostkowe_koszty_transportu_pomocna = new int[ilosc_odbiorcow, ilosc_dostawcow];
+            jednostkowe_koszty_transportu = new int[ilosc_odbiorcow, ilosc_dostawcow];
+            jednostkowe_koszty_transportu_pomocna = new int[ilosc_odbiorcow, ilosc_dostawcow];
             jednostkowe_koszty_transportu[0, 0] = 3;
             jednostkowe_koszty_transportu[0, 1] = 5;
-            jednostkowe_koszty_transportu[0, 2] = 7; 
-            jednostkowe_koszty_transportu[1, 0] = 12; 
+            jednostkowe_koszty_transportu[0, 2] = 7;
+            jednostkowe_koszty_transportu[1, 0] = 12;
             jednostkowe_koszty_transportu[1, 1] = 10;
             jednostkowe_koszty_transportu[1, 2] = 9;
-            jednostkowe_koszty_transportu[2, 0] = 13; 
-            jednostkowe_koszty_transportu[2, 1] = 3; 
+            jednostkowe_koszty_transportu[2, 0] = 13;
+            jednostkowe_koszty_transportu[2, 1] = 3;
             jednostkowe_koszty_transportu[2, 2] = 9;
 
             for (int i = 0; i < ilosc_dostawcow; i++)
                 for (int j = 0; j < ilosc_odbiorcow; j++)
                     jednostkowe_koszty_transportu_pomocna[i, j] = jednostkowe_koszty_transportu[i, j];
 
-            int[] popyt = new int[ilosc_odbiorcow]; 
+            popyt = new int[ilosc_odbiorcow];
             popyt[0] = int.Parse(textBox6.Text);//20
             popyt[1] = int.Parse(textBox7.Text);//40
             popyt[2] = int.Parse(textBox8.Text);//90
 
-            int[] podaz = new int[ilosc_dostawcow];
+            podaz = new int[ilosc_dostawcow];
             podaz[0] = int.Parse(textBox3.Text);//50
             podaz[1] = int.Parse(textBox4.Text);//70
             podaz[2] = int.Parse(textBox5.Text);//30
 
-            int[,] rozwiazanie_bazowe = new int[ilosc_odbiorcow, ilosc_dostawcow];
-            int min_i = 0;
-            int min_j = 0;
-            int min_element = jednostkowe_koszty_transportu[0, 0];
-            
-            
+            rozwiazanie_bazowe = new int[ilosc_odbiorcow, ilosc_dostawcow];
+            min_i = 0;
+            min_j = 0;
+            min_element = jednostkowe_koszty_transportu[0, 0];
+            zagadnienie_transportowe_metoda_min_element_Macierzy();
+        }
 
+        private void zagadnienie_transportowe_metoda_min_element_Macierzy()
+        {
+            
             for(int k=0; k <= ilosc_dostawcow*ilosc_odbiorcow-1; k++)
             {
                 for (int i=0; i<ilosc_dostawcow; i++)
@@ -190,7 +198,7 @@ namespace Zagadnienie_transportowe___aplikacja1
 
         private void wyswietl_wszystko(int[,] jednostkowe_koszty_transportu, int[,] rozwiazanie_bazowe, int[,] delta, int iloscOdbiorcow, int iloscDostawcow)
         {
-            //wyswietlenie wszystkiego i policzenie kosztu calkowitego
+            //wyswietlenie wszystkiego i policzenie kosztu calkowitego. Pokazanie w okienku tablic
             for (int i = 0; i < iloscDostawcow; i++)
                 for (int j = 0; j < iloscOdbiorcow; j++)
                     jednostkowe_koszty_transportu[i, j] /= 100;
