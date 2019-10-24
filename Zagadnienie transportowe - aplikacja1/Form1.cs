@@ -104,32 +104,46 @@ namespace Zagadnienie_transportowe___aplikacja1
                 for (int j = 0; j < ilosc_odbiorcow; j++)
                     Console.WriteLine((rozwiazanie_bazowe[i, j]).ToString());
 
-            int[] alfa = new int[3];
+            int[] alfa = new int[ilosc_dostawcow];
             alfa[0] = 0;
             alfa[1] = -1000;
             alfa[2] = -1000;
 
-            int[] beta = new int[3];
+            int[] beta = new int[ilosc_odbiorcow];
             beta[0] = -1000;
             beta[1] = -1000;
             beta[2] = -1000;
-            for(int i=0; i<ilosc_dostawcow; i++)
+            for(int k=0; k<ilosc_dostawcow * ilosc_odbiorcow; k++)
             {
-                for(int j=0; j<ilosc_odbiorcow; j++)
+                for (int i = 0; i < ilosc_dostawcow; i++)
                 {
-                    if(rozwiazanie_bazowe[i,j] != 0)
+                    for (int j = 0; j < ilosc_odbiorcow; j++)
                     {
-                        if(beta[j] != -1000)
+                        if (rozwiazanie_bazowe[i, j] != 0)
                         {
-                            alfa[i] = rozwiazanie_bazowe[i, j] - beta[j];
-                        }
-                        else if(alfa[i] != -1000)
-                        {
-                            beta[j] = rozwiazanie_bazowe[i, j] - alfa[i];
+                            if (beta[j] != -1000)
+                            {
+                                alfa[i] = jednostkowe_koszty_transportu[i, j] - beta[j];
+                            }
+                            else if (alfa[i] != -1000)
+                            {
+                                beta[j] = jednostkowe_koszty_transportu[i, j] - alfa[i];
+                            }
                         }
                     }
                 }
             }
+            for (int i = 0; i < ilosc_dostawcow; i++)
+                alfa[i] /= 100;
+            for (int j = 0; j < ilosc_odbiorcow; j++)
+                beta[j] /= 100;
+
+            Console.WriteLine(".........");
+            for (int i = 0; i < ilosc_dostawcow; i++)
+                Console.WriteLine(alfa[i].ToString());
+            for (int j = 0; j < ilosc_odbiorcow; j++)
+                Console.WriteLine(beta[j].ToString());
+            
 
             int[,] delta = new int[ilosc_odbiorcow, ilosc_dostawcow];
             for(int i=0; i<ilosc_dostawcow; i++)
