@@ -31,7 +31,7 @@ namespace Zagadnienie_transportowe___aplikacja1
 
             int[,] jednostkowe_koszty_transportu = new int[ilosc_odbiorcow, ilosc_dostawcow];
             int[,] jednostkowe_koszty_transportu_pomocna = new int[ilosc_odbiorcow, ilosc_dostawcow];
-            jednostkowe_koszty_transportu[0, 0] = 6;
+            jednostkowe_koszty_transportu[0, 0] = 3;
             jednostkowe_koszty_transportu[0, 1] = 5;
             jednostkowe_koszty_transportu[0, 2] = 7; 
             jednostkowe_koszty_transportu[1, 0] = 12; 
@@ -58,11 +58,8 @@ namespace Zagadnienie_transportowe___aplikacja1
             int[,] rozwiazanie_bazowe = new int[ilosc_odbiorcow, ilosc_dostawcow];
             int min_i = 0;
             int min_j = 0;
-            int min_i_poprzednie = 0;
-            int min_j_poprzednie = 0;
             int min_element = jednostkowe_koszty_transportu[0, 0];
-            int f = 0;
-            bool zmiana = false;
+            
             
 
             for(int k=0; k <= ilosc_dostawcow*ilosc_odbiorcow-1; k++)
@@ -71,46 +68,41 @@ namespace Zagadnienie_transportowe___aplikacja1
                 {
                     for(int j=0; j<ilosc_odbiorcow; j++)
                     {
-                        if(jednostkowe_koszty_transportu[i,j] < min_element && jednostkowe_koszty_transportu[i,j] >= f && (min_i_poprzednie != i || min_j_poprzednie != j))
+                        if(jednostkowe_koszty_transportu[i,j] < min_element )
                         {
                             min_element = jednostkowe_koszty_transportu[i, j];
-                            f = min_element;
                             min_i = i;
                             min_j = j;
-                            //zmiana = true;
-                            //jednostkowe_koszty_transportu_pomocna[i,j] *= 1000;
                         }
                     }
                 }
                 Console.WriteLine(min_element.ToString());
+                Console.WriteLine(min_i.ToString());
+                Console.WriteLine(min_j.ToString());
+                Console.WriteLine("----------");
 
-                //if(zmiana)
-                //{
-                    if (popyt[min_j] < podaz[min_i])
-                    {
-                        rozwiazanie_bazowe[min_i, min_j] = popyt[min_j];
-                        podaz[min_i] = podaz[min_i] - popyt[min_j];
-                        popyt[min_j] = 0;
-                    }
-                    else
-                    {
-                        rozwiazanie_bazowe[min_i, min_j] = podaz[min_i];
-                        popyt[min_j] = popyt[min_j] - podaz[min_i];
-                        podaz[min_i] = 0;
-                    }
-                    min_i_poprzednie = min_i;
-                    min_j_poprzednie = min_j;
-                //}
-                //zmiana = false;
-                //min_element *= 1000;
-                rozwiazanie_bazowe[min_i, min_j] *= 100;
+                if (popyt[min_j] < podaz[min_i])
+                {
+                    rozwiazanie_bazowe[min_i, min_j] = popyt[min_j];
+                    podaz[min_i] = podaz[min_i] - popyt[min_j];
+                    popyt[min_j] = 0;
+                }
+                else
+                {
+                    rozwiazanie_bazowe[min_i, min_j] = podaz[min_i];
+                    popyt[min_j] = popyt[min_j] - podaz[min_i];
+                    podaz[min_i] = 0;
+                }
+                
+                min_element *= 100;
+                jednostkowe_koszty_transportu[min_i, min_j] *= 100;
                 
 
             }
 
-            //for (int i = 0; i < ilosc_dostawcow; i++)
-                //for (int j = 0; j < ilosc_odbiorcow; j++)
-                    //Console.WriteLine((rozwiazanie_bazowe[i, j]).ToString());
+            for (int i = 0; i < ilosc_dostawcow; i++)
+                for (int j = 0; j < ilosc_odbiorcow; j++)
+                    Console.WriteLine((rozwiazanie_bazowe[i, j]).ToString());
 
             int[] alfa = new int[3];
             alfa[0] = 0;
