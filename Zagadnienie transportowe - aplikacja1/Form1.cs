@@ -188,12 +188,20 @@ namespace Zagadnienie_transportowe___aplikacja1
             Console.WriteLine(min_delta.ToString());
             if(min_delta < 0)
             {
-                
+                for (int i = 0; i < ilosc_dostawcow; i++)
+                    for (int j = 0; j < ilosc_odbiorcow; j++)
+                        jednostkowe_koszty_transportu[i, j] /= 100;
+                delta_ujemna(rozwiazanie_bazowe, ilosc_odbiorcow, ilosc_dostawcow);
             }
             else
             {
                 wyswietl_wszystko(jednostkowe_koszty_transportu, rozwiazanie_bazowe, delta, ilosc_odbiorcow, ilosc_dostawcow);
             }
+        }
+
+        private void delta_ujemna(int[,] rozwiazanie_Bazowe, int iloscOdbiorcow, int iloscDostawcow)
+        {
+
         }
 
         private void wyswietl_wszystko(int[,] jednostkowe_koszty_transportu, int[,] rozwiazanie_bazowe, int[,] delta, int iloscOdbiorcow, int iloscDostawcow)
